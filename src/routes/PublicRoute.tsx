@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../hooks/useAuth'
+import { paths } from './paths'
 
 interface PublicRouteProps {
   children: JSX.Element
@@ -13,7 +14,7 @@ export const PublicRoute = ({ children }: PublicRouteProps) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/purchases-historic', { replace: true })
+      navigate(paths.purchasesHistoric, { replace: true })
     }
   }, [isAuthenticated, navigate])
 

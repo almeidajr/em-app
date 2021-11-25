@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../hooks/useAuth'
+import { paths } from './paths'
 
 interface PrivateRouteProps {
   children: JSX.Element
@@ -13,7 +14,7 @@ export const PrivateRoute = ({ children }: PrivateRouteProps) => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/', { replace: true })
+      navigate(paths.signIn, { replace: true })
     }
   }, [isAuthenticated, navigate])
 
