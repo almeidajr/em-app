@@ -16,6 +16,7 @@ interface AuthContextData {
   isAuthenticated: boolean
   signIn: (credentials: SignInRequest) => Promise<void>
   signOut: () => void
+  isReady: boolean
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData)
@@ -29,6 +30,7 @@ const useProvideAuth = (): AuthContextData => {
     key,
     null,
   )
+  const [isReady, { setTrue: setReady }] = useBoolean(false)
 
   const signIn = useCallback(
     async ({ email, password }: SignInRequest) => {
@@ -51,12 +53,14 @@ const useProvideAuth = (): AuthContextData => {
       delete httpClient.defaults.headers.common.Authorization
       setFalse()
     }
-  }, [accessToken, setFalse, setTrue])
+    setReady()
+  }, [accessToken, setFalse, setReady, setTrue])
 
   return {
     isAuthenticated,
     signIn,
     signOut,
+    isReady,
   }
 }
 

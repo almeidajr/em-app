@@ -25,9 +25,6 @@ export const Layout = () => {
         rightContentRender={UserAvatar}
         route={route}
         title="EasyMarket"
-        waterMarkProps={{
-          content: 'EasyMarket',
-        }}
       >
         <Outlet />
       </ProLayout>

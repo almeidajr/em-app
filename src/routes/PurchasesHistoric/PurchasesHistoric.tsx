@@ -1,5 +1,11 @@
 import { PageContainer } from '@ant-design/pro-layout'
 
+import { NfceList } from '../../components/NfceList'
+
 export const PurchasesHistoric = () => {
-  return <PageContainer>**Interações com os dados**</PageContainer>
+  return (
+    <PageContainer>
+      <NfceList />
+    </PageContainer>
+  )
 }

@@ -22,7 +22,7 @@ export const SignIn = () => {
     try {
       await signIn(credentials)
       message.success('Autenticação realizada com sucesso!')
-    } catch {
+    } catch (error) {
       message.error(
         'Suas credencias de login não coincidem com uma conta em nosso sistema.',
       )
