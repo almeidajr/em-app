@@ -11,7 +11,7 @@ export const route = {
     },
     {
       path: paths.shoppingLists,
-      name: 'Lista de compras',
+      name: 'Listas de compras',
       icon: <ShoppingCartOutlined />,
     },
   ],
