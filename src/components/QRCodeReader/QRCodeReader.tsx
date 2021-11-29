@@ -1,4 +1,3 @@
-import { message } from 'antd'
 import { useCallback } from 'react'
 import QrReader from 'react-qr-reader'
 
@@ -11,7 +10,6 @@ export const QRCodeReader = ({ onSuccess }: QRCodeReaderProps) => {
     (data: string | null) => {
       if (data) {
         onSuccess?.(data)
-        message.success(`QR Code: ${data}`)
       }
     },
     [onSuccess],
@@ -20,8 +18,7 @@ export const QRCodeReader = ({ onSuccess }: QRCodeReaderProps) => {
   return (
     <QrReader
       delay={1000}
-      onError={(err) => console.log(err)}
-      onLoad={() => console.log('qr ready')}
+      onError={(err) => console.error(err)}
       onScan={onScan}
     />
   )

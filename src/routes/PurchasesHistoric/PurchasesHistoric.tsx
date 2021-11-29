@@ -4,8 +4,7 @@ import { useBoolean } from 'ahooks'
 import { Button } from 'antd'
 
 import { NfceList } from '../../components/NfceList'
-import { QRCodeReader } from '../../components/QRCodeReader'
-import { SquaredContentModal } from '../../components/SquaredContentModal'
+import { NfceRegistration } from '../../components/NfceRegistration'
 
 export const PurchasesHistoric = () => {
   const [isOpen, { setTrue, setFalse }] = useBoolean(false)
@@ -20,15 +19,7 @@ export const PurchasesHistoric = () => {
     >
       <NfceList />
 
-      <SquaredContentModal
-        destroyOnClose
-        onCancel={setFalse}
-        onOk={setFalse}
-        title="QR Code"
-        visible={isOpen}
-      >
-        <QRCodeReader />
-      </SquaredContentModal>
+      <NfceRegistration isOpen={isOpen} onClose={setFalse} />
     </PageContainer>
   )
 }

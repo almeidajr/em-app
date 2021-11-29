@@ -1,7 +1,7 @@
 import { useBoolean, useLocalStorageState } from 'ahooks'
 import { createContext, FC, useCallback, useContext, useEffect } from 'react'
 
-import { httpClient } from '../utils/httpClient'
+import { httpClient, scraperClient } from '../utils/httpClient'
 
 interface SignInRequest {
   email: string
@@ -48,9 +48,11 @@ const useProvideAuth = (): AuthContextData => {
   useEffect(() => {
     if (accessToken) {
       httpClient.defaults.headers.common.Authorization = `Bearer ${accessToken}`
+      scraperClient.defaults.headers.common.Authorization = `Bearer ${accessToken}`
       setTrue()
     } else {
       delete httpClient.defaults.headers.common.Authorization
+      delete scraperClient.defaults.headers.common.Authorization
       setFalse()
     }
     setReady()
