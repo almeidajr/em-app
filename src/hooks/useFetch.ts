@@ -14,14 +14,14 @@ export const useNfces = () =>
     const { data } = await httpClient.get<Nfce[]>('/nfces')
 
     return data
-      .map(({ amount, emissionDate, ...rest }) => ({
-        amount: fmt.currency(amount),
-        emissionDate: fmt.date(emissionDate),
-        ...rest,
-      }))
       .sort(
         (a, b) =>
           new Date(b.emissionDate).getTime() -
           new Date(a.emissionDate).getTime(),
       )
+      .map(({ amount, emissionDate, ...rest }) => ({
+        amount: fmt.currency(amount),
+        emissionDate: fmt.date(emissionDate),
+        ...rest,
+      }))
   })
