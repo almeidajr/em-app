@@ -3,9 +3,9 @@ import { PageContainer } from '@ant-design/pro-layout'
 import { useBoolean } from 'ahooks'
 import { Button } from 'antd'
 
-import { FullPageModal } from '../../components/FullPageModal'
 import { NfceList } from '../../components/NfceList'
 import { QRCodeReader } from '../../components/QRCodeReader'
+import { SquaredContentModal } from '../../components/SquaredContentModal'
 
 export const PurchasesHistoric = () => {
   const [isOpen, { setTrue, setFalse }] = useBoolean(false)
@@ -20,15 +20,15 @@ export const PurchasesHistoric = () => {
     >
       <NfceList />
 
-      <FullPageModal
+      <SquaredContentModal
         destroyOnClose
         onCancel={setFalse}
         onOk={setFalse}
-        title="Leitura do cupom fiscal"
+        title="QR Code"
         visible={isOpen}
       >
         <QRCodeReader />
-      </FullPageModal>
+      </SquaredContentModal>
     </PageContainer>
   )
 }

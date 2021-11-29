@@ -1,5 +1,7 @@
+import { FileSearchOutlined } from '@ant-design/icons'
 import { Alert, Card, Col, Row } from 'antd'
 import { Gutter } from 'antd/lib/grid/row'
+import { Link } from 'react-router-dom'
 
 import { useNfces } from '../../hooks/useFetch'
 
@@ -59,7 +61,15 @@ export const NfceList = () => {
     <Row gutter={cardsGutter}>
       {data.map((nfce) => (
         <Col className="gutter-row" key={nfce.id} {...cardsSpan}>
-          <Card extra={nfce.amount} title={nfce.id} />
+          <Card
+            actions={[
+              <Link to={nfce.id}>
+                <FileSearchOutlined key={`details-${nfce.id}`} />
+              </Link>,
+            ]}
+            extra={nfce.amount}
+            title={nfce.id}
+          />
         </Col>
       ))}
     </Row>
