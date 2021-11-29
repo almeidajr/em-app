@@ -1,9 +1,11 @@
 import { FileSearchOutlined } from '@ant-design/icons'
-import { Alert, Card, Col, Row } from 'antd'
+import { Alert, Card, Col, Row, Typography } from 'antd'
 import { Gutter } from 'antd/lib/grid/row'
 import { Link } from 'react-router-dom'
 
 import { useNfces } from '../../hooks/useFetch'
+
+const { Paragraph } = Typography
 
 const lineSize = 24
 const cardsGutter: [Gutter, Gutter] = [
@@ -69,7 +71,9 @@ export const NfceList = () => {
             ]}
             extra={nfce.amount}
             title={nfce.id}
-          />
+          >
+            <Paragraph>Data da compra: {nfce.emissionDate}</Paragraph>
+          </Card>
         </Col>
       ))}
     </Row>
