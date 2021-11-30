@@ -13,19 +13,15 @@ interface PrivateRouteProps {
 const queryClient = new QueryClient()
 
 export const PrivateRoute = ({ children }: PrivateRouteProps) => {
-  const { isAuthenticated, isReady } = useAuth()
+  const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (isReady && !isAuthenticated) {
+    if (!isAuthenticated) {
       queryClient.cancelQueries()
       navigate(paths.signIn, { replace: true })
     }
-  }, [isAuthenticated, isReady, navigate])
-
-  if (!isReady) {
-    return null
-  }
+  }, [isAuthenticated, navigate])
 
   return (
     <QueryClientProvider client={queryClient}>

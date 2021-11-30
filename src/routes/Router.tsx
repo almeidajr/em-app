@@ -1,16 +1,30 @@
+import { Spin } from 'antd'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { Layout } from '../components/Layout'
+import { useAuth } from '../hooks/useAuth'
 import { NotFound } from './NotFound'
 import { paths } from './paths'
 import { PrivateRoute } from './PrivateRoute'
 import { PublicRoute } from './PublicRoute'
+import { PurchasesDetails } from './PurchaseDetails'
 import { PurchasesHistoric } from './PurchasesHistoric'
 import { ShoppingLists } from './ShoppingLists'
 import { SignIn } from './SignIn'
 import { SignUp } from './SignUp'
+import { Center } from './styles'
 
 export const Router = () => {
+  const { isReady } = useAuth()
+
+  if (!isReady) {
+    return (
+      <Center>
+        <Spin size="large" />
+      </Center>
+    )
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -38,6 +52,14 @@ export const Router = () => {
               </PrivateRoute>
             }
             path={paths.purchasesHistoric}
+          />
+          <Route
+            element={
+              <PrivateRoute>
+                <PurchasesDetails />
+              </PrivateRoute>
+            }
+            path={paths.purchaseDetails}
           />
           <Route
             element={

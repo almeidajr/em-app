@@ -10,6 +10,11 @@ export const route = {
       icon: <HistoryOutlined />,
     },
     {
+      path: paths.purchaseDetails,
+      name: 'Detalhes da compra',
+      hideInMenu: true,
+    },
+    {
       path: paths.shoppingLists,
       name: 'Listas de compras',
       icon: <ShoppingCartOutlined />,
