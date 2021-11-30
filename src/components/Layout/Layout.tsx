@@ -1,4 +1,5 @@
 import ProLayout from '@ant-design/pro-layout'
+import { BackTop } from 'antd'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/useAuth'
@@ -27,6 +28,7 @@ export const Layout = () => {
         title="EasyMarket"
       >
         <Outlet />
+        <BackTop />
       </ProLayout>
     </Container>
   )
