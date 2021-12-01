@@ -1,13 +1,16 @@
 import { FileSearchOutlined, HistoryOutlined } from '@ant-design/icons'
 import { PageContainer } from '@ant-design/pro-layout'
 import { Breadcrumb } from 'antd'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
+import { NfceDetails } from '../../components/NfceDetails'
 import { paths } from '../paths'
 
 const { Item } = Breadcrumb
 
 export const PurchasesDetails = () => {
+  const { id } = useParams<'id'>()
+
   return (
     <PageContainer
       breadcrumbRender={() => (
@@ -23,7 +26,7 @@ export const PurchasesDetails = () => {
         </Breadcrumb>
       )}
     >
-      **Exibição detalhada**
+      <NfceDetails id={id!} />
     </PageContainer>
   )
 }
