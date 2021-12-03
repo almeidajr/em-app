@@ -23,8 +23,15 @@ interface Purchase {
   totalPrice: string
 }
 
+interface NfceRelevant {
+  id: string
+  amount: string
+  emissionDate: string
+  issuerName: string
+}
+
 export const useNfces = () =>
-  useQuery('nfces', async () => {
+  useQuery<NfceRelevant[]>('nfces', async () => {
     const { data } = await httpClient.get<Nfce[]>('/nfces')
 
     return data
@@ -33,10 +40,11 @@ export const useNfces = () =>
           new Date(b.emissionDate).getTime() -
           new Date(a.emissionDate).getTime(),
       )
-      .map(({ amount, emissionDate, ...rest }) => ({
+      .map(({ id, amount, emissionDate, issuer }) => ({
+        id,
         amount: fmt.currency(amount),
         emissionDate: fmt.date(emissionDate),
-        ...rest,
+        issuerName: issuer.name.toLocaleUpperCase(),
       }))
   })
 

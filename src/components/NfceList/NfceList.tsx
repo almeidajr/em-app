@@ -4,8 +4,9 @@ import { Gutter } from 'antd/lib/grid/row'
 import { Link } from 'react-router-dom'
 
 import { useNfces } from '../../hooks/useFetch'
+import { Center } from './styles'
 
-const { Paragraph } = Typography
+const { Paragraph, Title } = Typography
 
 const lineSize = 24
 const cardsGutter: [Gutter, Gutter] = [
@@ -69,10 +70,15 @@ export const NfceList = () => {
                 <FileSearchOutlined key={`details-${nfce.id}`} />
               </Link>,
             ]}
-            extra={nfce.amount}
-            title={nfce.id}
+            headStyle={{
+              textAlign: 'center',
+            }}
+            title={nfce.issuerName}
           >
-            <Paragraph>Data da compra: {nfce.emissionDate}</Paragraph>
+            <Center>
+              <Title level={3}>{nfce.amount}</Title>
+              <Paragraph type="secondary">{nfce.emissionDate}</Paragraph>
+            </Center>
           </Card>
         </Col>
       ))}
