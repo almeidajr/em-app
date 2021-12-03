@@ -5,3 +5,5 @@
 @import '~@ant-design/pro-list/dist/list.css';
 @import '~@ant-design/pro-descriptions/dist/descriptions.css';
 @import '~@ant-design/pro-card/dist/card.css';
+
+@import '~nprogress/nprogress.css';

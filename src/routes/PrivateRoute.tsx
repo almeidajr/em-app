@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../hooks/useAuth'
 import { paths } from './paths'
+import { Progress } from './Progress'
 
 interface PrivateRouteProps {
   children: JSX.Element
@@ -25,7 +26,7 @@ export const PrivateRoute = ({ children }: PrivateRouteProps) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <Progress>{children}</Progress>
       <ReactQueryDevtools position="bottom-right" />
     </QueryClientProvider>
   )

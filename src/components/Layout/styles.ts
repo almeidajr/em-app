@@ -10,14 +10,22 @@ export const Version = styled(Text)`
   display: block;
   width: 100%;
   color: #fff;
+  margin: 0;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
 
   code {
     display: block;
     width: 100%;
     border-radius: 0;
     margin: 0;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding: 0.5rem 0;
     text-align: center;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: clip;
   }
 `
