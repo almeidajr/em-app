@@ -65,24 +65,30 @@ interface PurchaseDescriptions {
 }
 
 export const useNfce = (id: string) =>
-  useQuery<NfceDescriptions>(['nfce', id], async () => {
-    const { data } = await httpClient.get<Nfce>(`/nfces/${id}`)
+  useQuery<NfceDescriptions>(
+    ['nfce', id],
+    async () => {
+      const { data } = await httpClient.get<Nfce>(`/nfces/${id}`)
 
-    const details: NfceDescriptions = {
-      issuerName: data.issuer.name,
-      emissionDate: fmt.date(data.emissionDate),
-      amount: fmt.currency(data.amount),
-      numberOfPurchases: data.purchases.length,
-      purchases: data.purchases
-        .sort((a, b) => a.description.localeCompare(b.description))
-        .map(({ id, description, quantity, unit, totalPrice }) => ({
-          key: id,
-          description,
-          quantity: `${quantity} ${unit}`,
-          totalPrice: fmt.currency(totalPrice),
-          sortPrice: Number(totalPrice),
-        })),
-    }
+      const details: NfceDescriptions = {
+        issuerName: data.issuer.name,
+        emissionDate: fmt.date(data.emissionDate),
+        amount: fmt.currency(data.amount),
+        numberOfPurchases: data.purchases.length,
+        purchases: data.purchases
+          .sort((a, b) => a.description.localeCompare(b.description))
+          .map(({ id, description, quantity, unit, totalPrice }) => ({
+            key: id,
+            description,
+            quantity: `${quantity} ${unit}`,
+            totalPrice: fmt.currency(totalPrice),
+            sortPrice: Number(totalPrice),
+          })),
+      }
 
-    return details
-  })
+      return details
+    },
+    {
+      staleTime: Infinity,
+    },
+  )
