@@ -1,4 +1,5 @@
 import { useBoolean, useLocalStorageState } from 'ahooks'
+import jwtDecode from 'jwt-decode'
 import { createContext, FC, useCallback, useContext, useEffect } from 'react'
 
 import { httpClient, scraperClient } from '../utils/httpClient'
@@ -22,10 +23,22 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData)
 
 const key = '@EasyMarket:accessToken'
-const initialAuth = !!JSON.parse(localStorage.getItem(key) ?? 'null')
+const getInitialAuth = (): boolean => {
+  const token = JSON.parse(localStorage.getItem(key) ?? 'null')
+  if (!token) {
+    return false
+  }
+  const { exp } = jwtDecode<{ exp: number }>(token)
+  if (isNaN(exp) || exp * 1000 < Date.now()) {
+    localStorage.removeItem(key)
+    return false
+  }
+
+  return true
+}
 
 const useProvideAuth = (): AuthContextData => {
-  const [isAuthenticated, { setTrue, setFalse }] = useBoolean(initialAuth)
+  const [isAuthenticated, { setTrue, setFalse }] = useBoolean(getInitialAuth())
   const [accessToken, setAccessToken] = useLocalStorageState<string | null>(
     key,
     null,
