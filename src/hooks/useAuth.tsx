@@ -39,9 +39,8 @@ const getInitialAuth = (): boolean => {
 
 const useProvideAuth = (): AuthContextData => {
   const [isAuthenticated, { setTrue, setFalse }] = useBoolean(getInitialAuth())
-  const [accessToken, setAccessToken] = useLocalStorageState<string | null>(
-    key,
-    null,
+  const [accessToken, setAccessToken] = useLocalStorageState<string | null>(key,
+    { defaultValue: null }
   )
   const [isReady, { setTrue: setReady }] = useBoolean(false)
 
