@@ -71,6 +71,13 @@ export const NfceDetails = ({ id }: NfceDetailsProps) => {
           triggerDesc: 'Ordenar em ordem decrescente',
           cancelSort: 'Remover ordenação',
         }}
+        pagination={{
+          hideOnSinglePage: true,
+          position: ['bottomCenter'],
+          onChange: () => window.scrollTo(0, 0),
+        }}
+        size="small"
+        tableLayout="auto"
       />
     </>
   )

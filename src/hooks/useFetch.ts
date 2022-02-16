@@ -90,5 +90,6 @@ export const useNfce = (id: string) =>
     },
     {
       staleTime: Infinity,
+      cacheTime: Infinity,
     },
   )
