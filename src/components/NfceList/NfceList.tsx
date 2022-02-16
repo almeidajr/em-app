@@ -1,4 +1,3 @@
-import { FileSearchOutlined } from '@ant-design/icons'
 import { Alert, Card, Col, Row, Typography } from 'antd'
 import { Gutter } from 'antd/lib/grid/row'
 import { Link } from 'react-router-dom'
@@ -64,22 +63,20 @@ export const NfceList = () => {
     <Row gutter={cardsGutter}>
       {data.map((nfce) => (
         <Col className="gutter-row" key={nfce.id} {...cardsSpan}>
-          <Card
-            actions={[
-              <Link to={nfce.id}>
-                <FileSearchOutlined key={`details-${nfce.id}`} />
-              </Link>,
-            ]}
-            headStyle={{
-              textAlign: 'center',
-            }}
-            title={nfce.issuerName}
-          >
-            <Center>
-              <Title level={3}>{nfce.amount}</Title>
-              <Paragraph type="secondary">{nfce.emissionDate}</Paragraph>
-            </Center>
-          </Card>
+          <Link to={nfce.id}>
+            <Card
+              headStyle={{
+                textAlign: 'center',
+              }}
+              hoverable
+              title={nfce.issuerName}
+            >
+              <Center>
+                <Title level={3}>{nfce.amount}</Title>
+                <Paragraph type="secondary">{nfce.emissionDate}</Paragraph>
+              </Center>
+            </Card>
+          </Link>
         </Col>
       ))}
     </Row>
