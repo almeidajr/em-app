@@ -8,9 +8,9 @@ export const UserAvatar = () => {
   return (
     <Container>
       <Dropdown
+        destroyPopupOnHide
         overlay={<UserMenu />}
         placement="bottomLeft"
-        trigger={['click']}
       >
         <Avatar icon={<UserOutlined />} shape="square" size="default" />
       </Dropdown>

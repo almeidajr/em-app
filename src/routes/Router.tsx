@@ -3,9 +3,11 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import { Layout } from '../components/Layout'
 import { useAuth } from '../hooks/useAuth'
+import { Dashboard } from './Dashboard'
 import { NotFound } from './NotFound'
 import { paths } from './paths'
 import { PrivateRoute } from './PrivateRoute'
+import { Profile } from './Profile'
 import { PublicRoute } from './PublicRoute'
 import { PurchasesDetails } from './PurchaseDetails'
 import { PurchasesHistoric } from './PurchasesHistoric'
@@ -48,6 +50,14 @@ export const Router = () => {
           <Route
             element={
               <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+            path={paths.dashboard}
+          />
+          <Route
+            element={
+              <PrivateRoute>
                 <PurchasesHistoric />
               </PrivateRoute>
             }
@@ -68,6 +78,14 @@ export const Router = () => {
               </PrivateRoute>
             }
             path={paths.shoppingLists}
+          />
+          <Route
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+            path={paths.profile}
           />
           <Route element={<NotFound />} path="*" />
         </Route>
