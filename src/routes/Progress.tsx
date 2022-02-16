@@ -7,6 +7,7 @@ interface ProgressProps {
 
 export const Progress = ({ children }: ProgressProps) => {
   useLayoutEffect(() => {
+    window.scrollTo(0, 0)
     nprogress.start()
   })
   useEffect(() => {
