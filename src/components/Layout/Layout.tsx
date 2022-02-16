@@ -17,6 +17,7 @@ export const Layout = () => {
     <Container id="layout-container">
       <ProLayout
         fixSiderbar
+        fixedHeader
         headerRender={isAuthenticated ? undefined : false}
         hide={!isAuthenticated}
         location={location}
