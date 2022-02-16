@@ -39,8 +39,9 @@ const getInitialAuth = (): boolean => {
 
 const useProvideAuth = (): AuthContextData => {
   const [isAuthenticated, { setTrue, setFalse }] = useBoolean(getInitialAuth())
-  const [accessToken, setAccessToken] = useLocalStorageState<string | null>(key,
-    { defaultValue: null }
+  const [accessToken, setAccessToken] = useLocalStorageState<string | null>(
+    key,
+    { defaultValue: null },
   )
   const [isReady, { setTrue: setReady }] = useBoolean(false)
 
@@ -67,7 +68,7 @@ const useProvideAuth = (): AuthContextData => {
       delete scraperClient.defaults.headers.common.Authorization
       setFalse()
     }
-    setReady()
+    setTimeout(() => setReady(), 100)
   }, [accessToken, setFalse, setReady, setTrue])
 
   return {
