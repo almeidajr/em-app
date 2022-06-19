@@ -17,7 +17,7 @@ type ResultStatus = 'reading' | 'creating' | 'success' | 'failed'
 type ResultComponents = { [K in ResultStatus]: JSX.Element }
 
 const urlValidator = (data: string) =>
-  data.includes('://nfce.fazenda.mg.gov.br/portalnfce/sistema/qrcode.xhtml?p=')
+  data.includes('gov.br')
 
 export const NfceRegistration = ({
   onClose,
